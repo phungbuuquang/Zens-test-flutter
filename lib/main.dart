@@ -1,7 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zens_test_flutter/di/di.dart';
+import 'package:zens_test_flutter/screens/home/bloc/home_cubit.dart';
+import 'package:zens_test_flutter/screens/home/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded(() async {
+    await DependencyInjection.inject();
+    runApp(const MyApp());
+  }, (e, stack) {});
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +34,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider(
+        create: (_) => HomeCubit(),
+        child: HomeScreen(),
+      ),
     );
   }
 }

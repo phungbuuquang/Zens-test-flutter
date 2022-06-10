@@ -8,7 +8,10 @@ class JokeModel {
   String? content;
   int? is_fun;
 
-  JokeModel();
+  JokeModel({
+    this.content,
+    this.is_fun,
+  });
 
   factory JokeModel.fromJson(Map<String, dynamic> json) =>
       _$JokeModelFromJson(json);

@@ -36,7 +36,7 @@ class _DBManagerImpl implements DBManager {
   }
 
   @override
-  String get dbName => "listcontact.db";
+  String get dbName => "my_db.db";
 
   @override
   Future<String> getDbFileDir() async {
